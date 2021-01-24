@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def error_messages_for(resource)
+    render "shared/error_messages", :resource => resource
+  end
+  
   def page_title
     content_for(:page_title) || Rails.application.class.to_s.split('::').first
   end

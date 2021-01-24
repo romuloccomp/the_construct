@@ -1,4 +1,7 @@
 <%%= form_with(model: <%= model_resource_name %>, data: { controller: 'validation' }) do |form| %>
+
+<%%= error_messages_for <%= model_resource_name %> %>
+
 <% attributes.each do |attribute| -%>
   <div class="form-group">
 <% unless attribute.field_type == :check_box -%>
