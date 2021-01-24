@@ -4,13 +4,13 @@
     <div class="section-header-breadcrumb">
       <div class="breadcrumb-item"><%%= link_to 'Dashboard', root_path %></div>
       <div class="breadcrumb-item"><%%= link_to '<%= plural_table_name.titleize %>', <%= plural_table_name %>_path %></div>
-      <div class="breadcrumb-item">Editing <%= singular_table_name.titleize %></div>
+      <div class="breadcrumb-item">Editando <%= singular_table_name.titleize %></div>
     </div>
   </div>
   <div class="section-body">
     <div class="card">
       <div class="card-header">
-        <h4>Editing <%= singular_table_name.titleize %></h4>
+        <h4>Editando <%= singular_table_name.titleize %></h4>
       </div>
       <div class="card-body">
         <%%= render 'form', <%= singular_table_name %>: @<%= singular_table_name %> %>
@@ -22,4 +22,4 @@
 <%%= link_to icon('fas fa-eye', 'Show'), @<%= singular_table_name %>, data: { turbolinks_action: 'replace' }, class: 'btn btn-icon icon-left btn-info' %>
 <%%= link_to icon('fas fa-arrow-left', 'Back'), 'javascript:history.back()', class: 'btn btn-icon icon-left btn-secondary d-mobile-none' %>
 
-<%% content_for(:page_title, 'Editing <%= singular_table_name.titleize %>') %>
+<%% content_for(:page_title, 'Editando <%= singular_table_name.titleize %>') %>

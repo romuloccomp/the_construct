@@ -28,26 +28,35 @@ class <%= controller_class_name %>Controller < ApplicationController
 
   def create
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
-    @<%= singular_table_name %>.save!
 
     respond_to do |format|
-      format.html { redirect_to <%= redirect_resource_name %>, notice: <%= "'#{human_name} was successfully created.'" %> }
-      format.json { render :show, status: :created }
+      @<%= singular_table_name %>.save
+        format.html { redirect_to <%= redirect_resource_name %>, notice: <%= "'#{human_name} criado com sucesso.'" %> }
+        format.json { render :show, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
-    @<%= singular_table_name %>.update!(<%= "#{singular_table_name}_params" %>)
+    
     respond_to do |format|
-      format.html { redirect_to <%= redirect_resource_name %>, notice: <%= "'#{human_name} was successfully updated.'" %> }
-      format.json { render :show }
+      if @<%= singular_table_name %>.update(<%= "#{singular_table_name}_params" %>)
+        format.html { redirect_to <%= redirect_resource_name %>, notice: <%= "'#{human_name} atualizado com sucesso.'" %> }
+        format.json { render :show }
+      else
+        format.html { render :new }
+        format.json { render json: @<%= singular_table_name %>.errors, status: :unprocessable_entity }        
+      end
     end
   end
 
   def destroy
     @<%= orm_instance.destroy %>
     respond_to do |format|
-      format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} was successfully destroyed.'" %> }
+      format.html { redirect_to <%= index_helper %>_url, notice: <%= "'#{human_name} foi excluído com sucesso.'" %> }
       format.json { head :no_content }
     end
   end
