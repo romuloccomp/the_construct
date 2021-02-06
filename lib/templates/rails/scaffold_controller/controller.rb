@@ -30,7 +30,7 @@ class <%= controller_class_name %>Controller < ApplicationController
     @<%= singular_table_name %> = <%= orm_class.build(class_name, "#{singular_table_name}_params") %>
 
     respond_to do |format|
-      @<%= singular_table_name %>.save
+      if @<%= singular_table_name %>.save
         format.html { redirect_to <%= redirect_resource_name %>, notice: <%= "'#{human_name} criado com sucesso.'" %> }
         format.json { render :show, status: :created }
       else
